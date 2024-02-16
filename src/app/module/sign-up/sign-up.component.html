@@ -1,0 +1,46 @@
+<div class="form-container">
+    <div class="form-field">
+        <h1>Create Your Account</h1>
+        <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="uname">User Name:</label>
+                <input type="text" id="name" formControlName="name">
+                <div *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" class="error-message">
+                    Please enter a username.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" formControlName="email">
+                <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error-message">
+                    Please enter a valid email address.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" formControlName="password">
+                <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error-message">
+                    Password must be at least 8 length and with special character and numbers.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="groupName">Group Name:</label>
+                <input type="text" id="groupName" formControlName="groupName">
+                <div *ngIf="signupForm.get('groupName')?.invalid && signupForm.get('groupName')?.touched" class="error-message">
+                    Please enter a group name.
+                </div>
+            </div>
+            <div class="form-group" *ngIf="(IsRefferal)">
+                <label for="refferalCode">Refferal Code:</label>
+                <input type="text" id="refferalCode" formControlName="refferalCode">
+                <div *ngIf="signupForm.get('refferalCode')?.invalid && signupForm.get('refferalCode')?.touched" class="error-message">
+                    Please enter a refferal code.
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <a routerLink="/login">Already have a Account? <span>Login</span></a>
+        <a (click)="addRefferal()">SignUp with Refferal</a>
+    </div>
+</div>
+
