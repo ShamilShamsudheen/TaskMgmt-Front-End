@@ -1,11 +1,12 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 
 
 @Injectable()
 export class MyInterceptor implements HttpInterceptor {
-  constructor() { }
+  constructor(private router:Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 console.log("interceptor");
@@ -17,7 +18,6 @@ console.log("interceptor");
         setHeaders: {
           Authorization:`Bearer ${token}`,
         },
-
       });
     }
     return next.handle(request);

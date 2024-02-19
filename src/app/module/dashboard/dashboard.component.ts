@@ -30,6 +30,9 @@ export class DashboardComponent implements OnInit {
     }
     
   }
+  OnclickView(groupId:number):void{
+    this.router.navigate(["/projects"],{queryParams:{id:groupId}});
+  }
   logout():void{
     localStorage.removeItem('userToken');
   }

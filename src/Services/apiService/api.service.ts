@@ -30,4 +30,7 @@ export class ApiService {
   groups():Observable<any>{
     return this.http.get(`${this.baseUrl}groups`);
   }
+  projects(groupId:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}${groupId}/projects`)
+  }
 }

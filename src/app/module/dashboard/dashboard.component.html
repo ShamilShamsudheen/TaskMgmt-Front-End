@@ -1,28 +1,28 @@
 <div class="container">
-    <div class="heading-container">
-        <h1>Groups</h1>
-        <button (click)="logout()">Logout</button>
-    </div>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Group ID</th>
-                    <th>Group Name</th>
-                    <th>Credited At</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let group of GroupData">
-                    <td>{{group.groupId}}</td>
-                    <td>{{group.groupName}}</td>
-                    <td>{{group.createdAt}}</td>
-                    <td><button >View</button></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container-body">
+        <div class="heading-container">
+            <h1>Groups</h1>
+            <button (click)="logout()">Logout</button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Group ID</th>
+                        <th>Group Name</th>
+                        <th>Credited At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let group of GroupData">
+                        <td>{{group.groupId}}</td>
+                        <td>{{group.groupName}}</td>
+                        <td>{{group.createdAt}}</td>
+                        <td><button (click)="OnclickView(group.groupId)">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
-
