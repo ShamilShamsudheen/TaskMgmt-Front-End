@@ -2,6 +2,7 @@
     <div class="container-body">
         <div class="heading-container">
             <h1>Groups</h1>
+            <h1 class="home" (click)="OnClickHome()">Home</h1>
             <button (click)="logout()">Logout</button>
         </div>
         <div class="table-container">
@@ -24,5 +25,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="option-container">
+            <div class="create-group" (click)="onClickGroupCreate()">+ Group</div>
+            <div class="entroll-group">+ Entroll</div>
+        </div>
     </div>
+    
 </div>

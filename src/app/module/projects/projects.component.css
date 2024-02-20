@@ -3,7 +3,6 @@
     width: 100%;
     flex-direction: row;
     justify-content: center;
-    /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     gap: 15%;
 }
 
@@ -62,4 +61,33 @@ th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+.home{
+    cursor: pointer;
+}
+.option-container{
+ display: flex;
+ flex-direction: row;
+ justify-content: end;
+ align-items: center;
+ margin-top: 1%;
+ gap: 2%;
+ color:whitesmoke
+}
+.create-project ,.entroll-project{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+        background-color: #007bff;
+        color: #fff;
+        width: 8vw;
+        height: 4vh;
+        border-radius: 1vh;
+        cursor: pointer;
+}
+.empty-container{
+    text-align: center;
+    
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../Services/apiService/api.service';
 
+
 @Component({
   selector: 'app-projects',
   // standalone: true,
@@ -11,24 +12,36 @@ import { ApiService } from '../../../Services/apiService/api.service';
 })
 export class ProjectsComponent implements OnInit {
   private groupId?:number;
+
+  ProjectData:any;
   constructor(private router:Router,private apiService:ApiService,private route:ActivatedRoute){}
   ngOnInit(): void {
     
     this.route.queryParams.subscribe(params => {
-      const id = params['id']
-      
+      this.groupId = parseInt(params['groupId'])
     });
     if(this.groupId){
       this.apiService.projects(this.groupId)
       .subscribe(
         (res) =>{
+          this.ProjectData = res;
           console.log(res);
+          
+        },
+        (err) =>{
+          console.error(err);
+          
         }
-      )
-    }else{
-      console.log("Tere is no Projects in this Group.");
+        )
       
     }
+  }
+  OnClickHome():void{
+    this.router.navigate(['/groups'])
+  }
+  logout():void{
+    localStorage.removeItem('userToken');
+    this.router.navigate(['/login'])
   }
 
 }

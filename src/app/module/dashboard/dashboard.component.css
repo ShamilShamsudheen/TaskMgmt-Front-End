@@ -63,3 +63,25 @@ th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+.option-container{
+ display: flex;
+ flex-direction: row;
+ justify-content: end;
+ align-items: center;
+ margin-top: 1%;
+ gap: 2%;
+ color:whitesmoke
+}
+.create-group ,.entroll-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+        background-color: #007bff;
+        color: #fff;
+        width: 8vw;
+        height: 4vh;
+        border-radius: 1vh;
+        cursor: pointer;
+}

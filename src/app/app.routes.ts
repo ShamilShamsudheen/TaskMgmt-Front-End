@@ -4,16 +4,19 @@ import { SignUpComponent } from './module/sign-up/sign-up.component';
 import { NgModule } from '@angular/core';
 import { DashboardComponent } from './module/dashboard/dashboard.component';
 import { ProjectsComponent } from './module/projects/projects.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' }, 
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'projects', component: ProjectsComponent},
+  { path: 'groups', component: DashboardComponent ,canActivate:[authGuard]},
+  { path: 'groups/:groupId/projects', component: ProjectsComponent,canActivate:[authGuard]},
 ];
 @NgModule({
     imports:[RouterModule.forRoot(routes)],
     exports:[RouterModule]
 })
-export class AppRoutingModule{}
+export class AppRoutingModule{
+    
+}

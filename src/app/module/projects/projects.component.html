@@ -3,9 +3,11 @@
     <div class="container-body">
         <div class="heading-container">
             <h1>Projects</h1>
-            <button >Logout</button>
+            <h1 class="home" (click)="OnClickHome()">Home</h1>
+            <button (click)="logout()">Logout</button>
         </div>
-        <div class="table-container">
+        <div class="empty-container"*ngIf="(!ProjectData)">"There is no project creted yet."</div>
+        <div class="table-container" *ngIf="(ProjectData)">
             <table>
                 <thead>
                     <tr>
@@ -24,6 +26,10 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="option-container">
+            <div class="create-project">+ Project</div>
+            <div class="entroll-project">+ Entroll</div>
         </div>
     </div>
 </div>

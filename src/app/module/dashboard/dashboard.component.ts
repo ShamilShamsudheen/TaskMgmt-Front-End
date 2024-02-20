@@ -10,8 +10,7 @@ import { ApiService } from '../../../Services/apiService/api.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-  
-  // public GroupData?:{groupId:number,groupName:string,creditedAt:Date}[];
+  showGroupCreateForm:boolean = false;  
   GroupData:any;
   constructor(private router:Router,private apiService:ApiService){}
   ngOnInit(): void {
@@ -31,10 +30,17 @@ export class DashboardComponent implements OnInit {
     
   }
   OnclickView(groupId:number):void{
-    this.router.navigate(["/projects"],{queryParams:{id:groupId}});
+    this.router.navigate([`/groups/${groupId}/projects`]);
+  }
+  OnClickHome():void{
+    this.router.navigate(['/groups'])
   }
   logout():void{
     localStorage.removeItem('userToken');
+    this.router.navigate(['/login'])
+  }
+  onClickGroupCreate():void{
+    this.showGroupCreateForm = !this.showGroupCreateForm;
   }
 
 }

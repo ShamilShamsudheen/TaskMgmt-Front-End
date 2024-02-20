@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
         (res) => {
 
           localStorage.setItem('userToken',res)
-          this.router.navigate(["/dashboard"])
+          this.router.navigate(["/groups"])
         },
         (err) =>{
           this.Response = err

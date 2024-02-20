@@ -34,13 +34,16 @@
                 <label for="refferalCode">Refferal Code:</label>
                 <input type="text" id="refferalCode" formControlName="refferalCode">
                 <div *ngIf="signupForm.get('refferalCode')?.invalid && signupForm.get('refferalCode')?.touched" class="error-message">
-                    Please enter a refferal code.
+                    Please enter a refferral code.
                 </div>
             </div>
             <button type="submit">Submit</button>
         </form>
         <a routerLink="/login">Already have a Account? <span>Login</span></a>
-        <a (click)="addRefferal()">SignUp with Refferal</a>
+        <a (click)="addRefferal()" *ngIf="(!IsRefferal)">SignUp with Refferal</a>
+    </div>
+    <div class="pop" style="display: none;">
+        
     </div>
 </div>
 
