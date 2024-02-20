@@ -12,7 +12,7 @@
                         <th>Group ID</th>
                         <th>Group Name</th>
                         <th>Credited At</th>
-                        <th>Action</th>
+                        <th>Project</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +24,13 @@
                     </tr>
                 </tbody>
             </table>
+            <ngx-loading [show]="loading" [config]="{
+                    primaryColour: primaryColour,
+                    secondaryColour: secondaryColour,
+                    tertiaryColour: primaryColour,
+                    backdropBorderRadius: '3px'
+                }" [template]="loadingTemplate">
+            </ngx-loading>
         </div>
         <div class="option-container">
             <div class="create-group" (click)="onClickGroupCreate()">+ Group</div>
@@ -33,10 +40,13 @@
             <form #groupForm="ngForm" (ngSubmit)="onSubmit()">
                 <label for="groupName">Group Name:</label>
                 <input type="text" id="groupName" name="groupName" required [(ngModel)]="groupName">
-                <button type="submit">Submit</button>
-                <button type="button" (click)="onCancel()">Close</button>
+                <div class="btnDiv">
+                    <button type="submit">Submit</button>
+                    <button type="button" (click)="onCancel()">Close</button>
+                </div>
             </form>
         </div>
+
     </div>
 
 

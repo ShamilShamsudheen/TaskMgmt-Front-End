@@ -2,11 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 100vh;
+    background-color: #c5c3d42b;
+    width: 100%;
+    color: gray;
 }
 
 .form-container {
-    width: 30%;
+    width: 40%;
     
 }
 
@@ -32,6 +35,7 @@ input {
     padding: 1em;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: gray;
 }
 
 .error-message {

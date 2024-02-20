@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app.routes';
 import { MyInterceptor } from './Interceptor/interceptor.interceptor';
 import { DashboardComponent } from './module/home/dashboard.component';
 import { ProjectsComponent } from './module/projects/projects.component';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 
 
@@ -21,7 +22,7 @@ import { ProjectsComponent } from './module/projects/projects.component';
     SignInComponent,
     DashboardComponent,
     ProjectsComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -30,6 +31,14 @@ import { ProjectsComponent } from './module/projects/projects.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
+      backdropBackgroundColour: "rgba(0,0,0,0.1)",
+      backdropBorderRadius: "4px",
+      primaryColour: "#ffffff",
+      secondaryColour: "#ffffff",
+      tertiaryColour: "#ffffff",
+    }),
   ],
   providers:[{provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}],
   bootstrap:[AppComponent]
