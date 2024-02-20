@@ -10,7 +10,8 @@ import { ApiService } from '../../../Services/apiService/api.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-  showGroupCreateForm:boolean = false;  
+  showGroupForm:boolean = false;
+  groupName!:string; 
   GroupData:any;
   constructor(private router:Router,private apiService:ApiService){}
   ngOnInit(): void {
@@ -26,8 +27,7 @@ export class DashboardComponent implements OnInit {
       )
     }else{
       this.router.navigate(["/login"])
-    }
-    
+    } 
   }
   OnclickView(groupId:number):void{
     this.router.navigate([`/groups/${groupId}/projects`]);
@@ -40,7 +40,18 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   onClickGroupCreate():void{
-    this.showGroupCreateForm = !this.showGroupCreateForm;
+    this.showGroupForm = !this.showGroupForm;
+  }
+
+  onSubmit(): void {
+    console.log("Submitted Group Name:", this.groupName);
+    this.groupName = '';
+    this.showGroupForm = false;
+  }
+
+  onCancel(): void {
+    this.groupName = '';
+    this.showGroupForm = false;
   }
 
 }

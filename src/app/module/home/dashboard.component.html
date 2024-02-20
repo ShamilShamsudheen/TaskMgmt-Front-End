@@ -29,6 +29,15 @@
             <div class="create-group" (click)="onClickGroupCreate()">+ Group</div>
             <div class="entroll-group">+ Entroll</div>
         </div>
+        <div class="group-form" [style.display]="showGroupForm ? 'block' : 'none'">
+            <form #groupForm="ngForm" (ngSubmit)="onSubmit()">
+                <label for="groupName">Group Name:</label>
+                <input type="text" id="groupName" name="groupName" required [(ngModel)]="groupName">
+                <button type="submit">Submit</button>
+                <button type="button" (click)="onCancel()">Close</button>
+            </form>
+        </div>
     </div>
-    
+
+
 </div>

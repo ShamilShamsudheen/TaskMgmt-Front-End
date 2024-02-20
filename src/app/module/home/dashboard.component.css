@@ -85,3 +85,53 @@ tr:nth-child(even) {
         border-radius: 1vh;
         cursor: pointer;
 }
+.home{
+    cursor: pointer;
+}
+.group-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff; /* White background for the form */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow for the form */
+    z-index: 999; /* Ensure the form appears above other content */
+}
+
+.group-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.group-form label {
+    margin-bottom: 10px;
+}
+
+.group-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Gray border for input fields */
+    border-radius: 5px;
+}
+
+.group-form button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue background for buttons */
+    color: #fff;
+    margin-top: auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.group-form button[type="submit"] {
+    background-color: #28a745; /* Green background for submit button */
+}
+
+.group-form button[type="submit"]:hover,
+.group-form button[type="button"]:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}

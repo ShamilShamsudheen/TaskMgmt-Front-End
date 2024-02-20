@@ -9,13 +9,20 @@ import { SignInComponent } from './module/sign-in/sign-in.component';
 import { RouterOutlet } from '@angular/router';
 import { AppRoutingModule } from './app.routes';
 import { MyInterceptor } from './Interceptor/interceptor.interceptor';
-import { DashboardComponent } from './module/dashboard/dashboard.component';
+import { DashboardComponent } from './module/home/dashboard.component';
 import { ProjectsComponent } from './module/projects/projects.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent,SignUpComponent,SignInComponent,DashboardComponent,ProjectsComponent],
+  declarations: [
+    AppComponent,
+    SignUpComponent,
+    SignInComponent,
+    DashboardComponent,
+    ProjectsComponent,
+    
+  ],
   imports: [
     CommonModule,
     BrowserModule,
