@@ -12,6 +12,9 @@ import { MyInterceptor } from './Interceptor/interceptor.interceptor';
 import { DashboardComponent } from './module/home/dashboard.component';
 import { ProjectsComponent } from './module/projects/projects.component';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -39,6 +42,17 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
       secondaryColour: "#ffffff",
       tertiaryColour: "#ffffff",
     }),
+    ToastrModule.forRoot({
+      timeOut: 30000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      
+      iconClasses: {
+        error: 'toast-error', 
+        success: 'toast-success', 
+      },
+    }),
+    BrowserAnimationsModule,
   ],
   providers:[{provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}],
   bootstrap:[AppComponent]

@@ -1,7 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../Services/apiService/api.service';
-
+import { ToastrService } from 'ngx-toastr';
+export interface groupDto {
+  groupName: string
+}
 @Component({
   selector: 'app-dashboard',
   // standalone: true,
@@ -10,6 +13,7 @@ import { ApiService } from '../../../Services/apiService/api.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
+  newGroup!: groupDto;
   public loading: boolean = false;
   showGroupForm: boolean = false;
   groupName!: string;
@@ -18,7 +22,7 @@ export class DashboardComponent implements OnInit {
   loadingTemplate!: TemplateRef<Element>;
   secondaryColour: string | undefined;
   primaryColour: string | undefined = '#1976d2';;
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService,private toastr:ToastrService) { }
   ngOnInit(): void {
     this.loading = true;
     const token = localStorage.getItem('userToken');
@@ -43,6 +47,7 @@ export class DashboardComponent implements OnInit {
   }
   logout(): void {
     localStorage.removeItem('userToken');
+    this.toastr.success('Logout Successfully!', 'Success', { timeOut: 3000 })
     this.router.navigate(['/login'])
   }
   onClickGroupCreate(): void {
@@ -51,7 +56,18 @@ export class DashboardComponent implements OnInit {
 
   onSubmit(): void {
     console.log("Submitted Group Name:", this.groupName);
-    this.groupName = '';
+
+    this.apiService.createGroup(this.groupName)
+      .subscribe(
+        (res) => {
+          this.loading = true;
+          this.router.navigate(['/groups']);
+        },
+        (err) => {
+          console.log(err, "failed creation");
+
+        }
+      )
     this.showGroupForm = false;
   }
 
@@ -59,6 +75,5 @@ export class DashboardComponent implements OnInit {
     this.groupName = '';
     this.showGroupForm = false;
   }
-  showAlert(): void { }
 
 }

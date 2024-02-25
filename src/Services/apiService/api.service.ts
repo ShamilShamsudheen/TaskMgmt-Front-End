@@ -8,6 +8,9 @@ export interface signUpData {
   groupName:string,
   refferalcode?:string
 }
+export interface createGroup {
+  groupName:string
+}
 export interface loginData {
   email:string,
   password:string
@@ -16,6 +19,7 @@ export interface loginData {
   providedIn: 'root'
 })
 export class ApiService {
+  newGroup!:createGroup
 
   private baseUrl:string = 'https://localhost:7197/api/';
 
@@ -31,6 +35,12 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}groups`);
   }
   projects(groupId:number):Observable<any>{
-    return this.http.get(`${this.baseUrl}${groupId}/projects`)
+    return this.http.get(`${this.baseUrl}groups/${groupId}/projects`)
+  }
+  createGroup(reqdata:string):Observable<any>{
+    const body = {
+      groupName : reqdata
+    }
+    return this.http.post(`${this.baseUrl}groups`,body,{responseType:'text'});
   }
 }

@@ -88,6 +88,9 @@ tr:nth-child(even) {
 .home{
     cursor: pointer;
 }
+.home:hover{
+    
+}
 .group-form {
     position: fixed;
     top: 50%;

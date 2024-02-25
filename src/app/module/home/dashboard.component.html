@@ -19,7 +19,7 @@
                     <tr *ngFor="let group of GroupData">
                         <td>{{group.groupId}}</td>
                         <td>{{group.groupName}}</td>
-                        <td>{{group.createdAt}}</td>
+                        <td style="color: blue;font-size: small;">{{group.createdAt}}</td>
                         <td><button (click)="OnclickView(group.groupId)">View</button></td>
                     </tr>
                 </tbody>
