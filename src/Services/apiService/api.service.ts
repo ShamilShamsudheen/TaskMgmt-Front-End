@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { projectDto } from '../../app/module/projects/projects.component';
 export interface signUpData {
   name:string,
   email:string,
@@ -8,6 +9,7 @@ export interface signUpData {
   groupName:string,
   refferalcode?:string
 }
+
 export interface createGroup {
   groupName:string
 }
@@ -35,12 +37,15 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}groups`);
   }
   projects(groupId:number):Observable<any>{
-    return this.http.get(`${this.baseUrl}groups/${groupId}/projects`)
+    return this.http.get(`${this.baseUrl}groups/${groupId}/projects`);
   }
   createGroup(reqdata:string):Observable<any>{
     const body = {
       groupName : reqdata
     }
     return this.http.post(`${this.baseUrl}groups`,body,{responseType:'text'});
+  }
+  createProject(reqdata:projectDto,groupId:number):Observable<any> {
+    return this.http.post(`${this.baseUrl}groups/${groupId}/projects`,reqdata,{responseType:'text'});
   }
 }

@@ -3,6 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../Services/apiService/api.service';
 import { ToastrService } from 'ngx-toastr';
 
+export interface projectDto{
+  projectName:String,
+  projectDescription:String
+}
 
 @Component({
   selector: 'app-projects',
@@ -12,7 +16,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent implements OnInit {
-  private groupId?: number;
+  showProjectForm:boolean = false;
+  newProject:projectDto = {projectName:'',projectDescription:''};
+  private groupId!: number;
   public loading: boolean = false;
   ProjectData: any;
   primaryColour: string | undefined = '#1976d2';
@@ -25,26 +31,17 @@ export class ProjectsComponent implements OnInit {
     
     this.route.params.subscribe(params => {
       this.groupId = parseInt(params['groupId']);
-      console.log(this.groupId);
     });
 
     if (this.groupId) {
       this.apiService.projects(this.groupId)
         .subscribe(
           (res) => {
-            
             this.ProjectData = res;
             console.log( "success",res);
             this.loading = false;
-            console.log(this.loading);
-
-          },
-          (err) => {
-            this.loading = false;
-            console.error(err);
           }
         )
-
     }
   }
   OnClickHome(): void {
@@ -56,6 +53,27 @@ export class ProjectsComponent implements OnInit {
     this.toastr.success('Logout Successfully!', 'Success', { timeOut: 3000 })
     this.router.navigate(['/login'])
     this.loading = false;
+  }
+  onCancel():void {
+    this.showProjectForm = false;
+  }
+  onSubmit():void {
+    console.log("submitted Project Details",this.newProject);
+    this.apiService.createProject(this.newProject,this.groupId)
+      .subscribe(
+        (res) => {
+          this.loading = true;
+          this.toastr.success('Project Created Successfully!', 'Success', { timeOut: 3000 })
+        },
+        (err) => {
+          console.log(err, "failed creation");
+          this.toastr.success(`Failed Creation:${err}`, 'Failed', { timeOut: 3000 })
+        }
+      )
+    this.showProjectForm = false;
+  }
+  onClickProjectCreate():void {
+    this.showProjectForm = true;
   }
 
 }
