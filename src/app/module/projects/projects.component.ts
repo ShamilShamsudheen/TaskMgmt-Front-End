@@ -28,7 +28,6 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     console.log(this.loading);
-    
     this.route.params.subscribe(params => {
       this.groupId = parseInt(params['groupId']);
     });
@@ -74,6 +73,9 @@ export class ProjectsComponent implements OnInit {
   }
   onClickProjectCreate():void {
     this.showProjectForm = true;
+  }
+  onClickView(projectId:number):void{
+    this.router.navigate([`/groups/${this.groupId}/projects/${projectId}/tasks`])
   }
 
 }

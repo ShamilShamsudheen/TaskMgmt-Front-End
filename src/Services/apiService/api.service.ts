@@ -26,16 +26,18 @@ export class ApiService {
   private baseUrl:string = 'https://localhost:7197/api/';
 
   constructor(private http:HttpClient) { }
-
+  // Authentication
   signUp(reqdata:signUpData):Observable<any>{
     return this.http.post(`${this.baseUrl}signup`, reqdata, { responseType: 'text' });
   }
   login(reqdata:loginData):Observable<any>{
     return this.http.post(`${this.baseUrl}login` , reqdata , {responseType: 'text'})
   }
+  // Groups
   groups():Observable<any>{
     return this.http.get(`${this.baseUrl}groups`);
   }
+  // Projects
   projects(groupId:number):Observable<any>{
     return this.http.get(`${this.baseUrl}groups/${groupId}/projects`);
   }
@@ -47,5 +49,9 @@ export class ApiService {
   }
   createProject(reqdata:projectDto,groupId:number):Observable<any> {
     return this.http.post(`${this.baseUrl}groups/${groupId}/projects`,reqdata,{responseType:'text'});
+  }
+  // Tasks
+  tasks(groupId:number,projectId:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}/tasks`)
   }
 }

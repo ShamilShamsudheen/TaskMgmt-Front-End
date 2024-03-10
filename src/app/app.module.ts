@@ -14,6 +14,7 @@ import { ProjectsComponent } from './module/projects/projects.component';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TasksComponent } from './module/tasks/tasks.component';
 
 
 
@@ -25,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignInComponent,
     DashboardComponent,
     ProjectsComponent,
-
+    TasksComponent
   ],
   imports: [
     CommonModule,
