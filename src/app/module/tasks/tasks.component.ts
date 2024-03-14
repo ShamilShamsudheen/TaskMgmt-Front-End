@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ApiService } from '../../../Services/apiService/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tasks',
@@ -17,10 +18,14 @@ onClickView(arg0: any) {
 throw new Error('Method not implemented.');
 }
 logout() {
-throw new Error('Method not implemented.');
+  this.loading = true;
+  localStorage.removeItem('userToken');
+  this.toastr.success('Logout Successfully!', 'Success', { timeOut: 3000 })
+  this.router.navigate(['/login'])
+  this.loading = false;
 }
 OnClickHome() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['/groups'])
 }
   public loading:boolean = false;
   taskData:any;
@@ -28,22 +33,22 @@ throw new Error('Method not implemented.');
   private projectId!:number;
   constructor(
     private apiService:ApiService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router,
+    private toastr:ToastrService
     ){}
   ngOnInit(): void {
-    // this.loading = true;
     this.route.params.subscribe(params => {
       this.groupId = parseInt(params['groupId']);
       this.projectId = parseInt(params['projectId']);
     })
     console.log(this.projectId,this.groupId,"groupId and projectId");
-    
+    this.loading= true;
     this.apiService.tasks(this.groupId,this.projectId)
     .subscribe(
       (res)=>{
-        this.loading= true;
+       
         this.taskData = res;
-        console.log(res,"response for task page",this.loading);
         this.loading = false;
       }
     )

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { projectDto } from '../../app/module/projects/projects.component';
+import { groupDto } from '../../app/module/home/dashboard.component';
 export interface signUpData {
   name:string,
   email:string,
@@ -37,15 +38,20 @@ export class ApiService {
   groups():Observable<any>{
     return this.http.get(`${this.baseUrl}groups`);
   }
+  createGroup(body:groupDto):Observable<any>{
+
+    return this.http.post(`${this.baseUrl}groups`,body,{responseType:'text'});
+  }
+  group(groupId:number):Observable<any>{
+    return  this.http.get(`${this.baseUrl}groups/${groupId}`)
+  }
+  updateGroup(groupId:number ,body:groupDto):Observable<any>{
+    
+    return this.http.patch(`${this.baseUrl}groups/${groupId}`,body,{responseType:'text'})
+  }
   // Projects
   projects(groupId:number):Observable<any>{
     return this.http.get(`${this.baseUrl}groups/${groupId}/projects`);
-  }
-  createGroup(reqdata:string):Observable<any>{
-    const body = {
-      groupName : reqdata
-    }
-    return this.http.post(`${this.baseUrl}groups`,body,{responseType:'text'});
   }
   createProject(reqdata:projectDto,groupId:number):Observable<any> {
     return this.http.post(`${this.baseUrl}groups/${groupId}/projects`,reqdata,{responseType:'text'});

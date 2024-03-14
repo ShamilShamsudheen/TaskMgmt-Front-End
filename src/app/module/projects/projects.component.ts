@@ -16,6 +16,12 @@ export interface projectDto{
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent implements OnInit {
+onClickDelete(arg0: any) {
+throw new Error('Method not implemented.');
+}
+onClickEdit(arg0: any) {
+throw new Error('Method not implemented.');
+}
   showProjectForm:boolean = false;
   newProject:projectDto = {projectName:'',projectDescription:''};
   private groupId!: number;

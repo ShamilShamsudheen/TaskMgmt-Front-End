@@ -26,7 +26,7 @@
 
     button {
         border: none;
-        background-color: #007bff;
+        background-color: #61affe;
         color: #fff;
         border-radius: 1vh;
         width: 8vw;
@@ -50,10 +50,10 @@ th {
 
     button {
         border: none;
-        background-color: #007bff;
-        color: #fff;
-        width: 8vw;
-        height: 4vh;
+        /* background-color: #007bff; */
+        color: #007bff;
+        width: fit-content;
+        height:fit-content;
         border-radius: 1vh;
         cursor: pointer;
     }
@@ -80,7 +80,7 @@ tr:nth-child(even) {
     justify-content: center;
     align-items: center;
     border: none;
-        background-color: #007bff;
+        background-color: #49cc90;
         color: #fff;
         width: 8vw;
         height: 4vh;

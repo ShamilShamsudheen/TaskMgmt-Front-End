@@ -42,12 +42,12 @@ import { TasksComponent } from './module/tasks/tasks.component';
       primaryColour: "#ffffff",
       secondaryColour: "#ffffff",
       tertiaryColour: "#ffffff",
+      
     }),
     ToastrModule.forRoot({
       timeOut: 30000,
-      positionClass: 'toast-top-center',
+      positionClass: 'toast-top-right',
       preventDuplicates: true,
-      
       iconClasses: {
         error: 'toast-error', 
         success: 'toast-success', 

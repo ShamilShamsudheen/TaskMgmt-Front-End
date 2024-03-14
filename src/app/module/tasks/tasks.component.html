@@ -13,22 +13,26 @@
                 </div>
             </div>
         </ng-template>
-        <div class="table-container" *ngIf="taskData[0] ; else notaskData">
+        <div class="table-container" *ngIf="taskData ; else notaskData">
             <table>
                 <thead>
                     <tr>
-                        <th>Project ID</th>
-                        <th>Project Name</th>
-                        <th>Project Description</th>
-                        <th>Action</th>
+                        <th>Task ID</th>
+                        <th>Description</th>
+                        <th>Created By</th>
+                        <th>Due Date</th>
+                        <th>Assignee</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let project of taskData">
-                        <td>{{project.projectId}}</td>
-                        <td>{{project.projectName}}</td>
-                        <td>{{project.projectDescription}}</td>
-                        <td><button (click)="onClickView(project.projectId)">View</button></td>
+                    <tr *ngFor="let task of taskData">
+                        <td>{{task.taskId}}</td>
+                        <td>{{task.description}}</td>
+                        <td>{{task.createdBy}}</td>
+                        <td>{{task.dueDate}}</td>
+                        <td>{{task.assignee}}</td>
+                        <td>{{task.currentStatus}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -2,9 +2,11 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../Services/apiService/api.service';
 import { ToastrService } from 'ngx-toastr';
+
 export interface groupDto {
-  groupName: string
+  GroupName: string
 }
+
 @Component({
   selector: 'app-dashboard',
   // standalone: true,
@@ -13,16 +15,21 @@ export interface groupDto {
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-  newGroup!: groupDto;
+  showGroupDeleteConformation: boolean = false;
+  groupIdToEdit!: number;
+  groupNameToEdit: string = '';
+  GroupDto: groupDto = { GroupName: '' };
   public loading: boolean = false;
   showGroupForm: boolean = false;
-  groupName!: string;
+  showGroupEditForm: boolean = false;
+  groupName: string = '';
   GroupData: any;
   ngxLoadingAnimationTypes: any;
   loadingTemplate!: TemplateRef<Element>;
-  secondaryColour: string | undefined;
-  primaryColour: string | undefined = '#1976d2';;
-  constructor(private router: Router, private apiService: ApiService,private toastr:ToastrService) { }
+  secondaryColour: string | undefined = '#50e3c2;';
+  primaryColour: string | undefined = '#1976d2';
+  tertiaryColor: string | undefined = '#f93e3e;';
+  constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) { }
   ngOnInit(): void {
     this.loading = true;
     const token = localStorage.getItem('userToken');
@@ -54,26 +61,71 @@ export class DashboardComponent implements OnInit {
     this.showGroupForm = !this.showGroupForm;
   }
 
-  onSubmit(): void {
-    console.log("Submitted Group Name:", this.groupName);
+  onSubmit(mode: string, groupName: string): void {
+    console.log(groupName, 'input');
+    this.GroupDto.GroupName = groupName;
+    console.log(this.GroupDto, 'groupDto');
+    switch (mode) {
+      case 'create':
+        this.apiService.createGroup(this.GroupDto)
+          .subscribe(
+            (res) => {
+              this.loading = true;
+              this.router.navigate(['/groups']);
+            },
+            (err) => {
+              console.log(err, "failed creation");
+            }
+          );
+        this.showGroupForm = false;
+        break;
 
-    this.apiService.createGroup(this.groupName)
-      .subscribe(
-        (res) => {
-          this.loading = true;
-          this.router.navigate(['/groups']);
-        },
-        (err) => {
-          console.log(err, "failed creation");
+      case 'update':
+        this.GroupDto.GroupName = groupName;
+        this.apiService.updateGroup(this.groupIdToEdit, this.GroupDto)
+          .subscribe(
+            (res) => {
+              console.log(res);
+              this.loading = true;
+              this.toastr.success('Updated Group  Name Successfully!', 'Success', { timeOut: 3000 })
+              this.router.navigate(['/groups']);
+            },
+            (err) => {
+              this.toastr.error('failed update group name.', 'Error', { timeOut: 3000 })
+              console.log(err, 'failed update group name.');
+            }
+          )
 
-        }
-      )
-    this.showGroupForm = false;
+        break;
+
+      default:
+        // Handle default case
+        break;
+    }
+
   }
 
   onCancel(): void {
     this.groupName = '';
     this.showGroupForm = false;
+    this.showGroupEditForm = false;
   }
+  OnclickDelete(groupId: number) {
+    this.showGroupDeleteConformation = true;
+  }
+  OnclickEdit(groupId: number) {
+    this.loading = true;
+    this.groupIdToEdit = groupId;
+    this.apiService.group(groupId)
+      .subscribe(
+        (res) => {
+          this.showGroupEditForm = true;
+          this.groupName = res.groupName;
+          this.loading = false;
+        }
+      )
+  }
+  onConformation() {
 
+  }
 }

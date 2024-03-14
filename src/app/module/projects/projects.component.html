@@ -28,7 +28,13 @@
                         <td>{{project.projectId}}</td>
                         <td>{{project.projectName}}</td>
                         <td>{{project.projectDescription}}</td>
-                        <td><button (click)="onClickView(project.projectId)">View</button></td>
+                        <td><button style="color: #61affe;" (click)="onClickView(project.projectId)"><i
+                                    class="fas fa-eye"></i></button>
+                            <button style="color: #50e3c2;" (click)="onClickEdit(project.projectId)"><i
+                                    class="fas fa-edit"></i></button>
+                            <button style="color: #f93e3e;" (click)="onClickDelete(project.projectId)"><i
+                                    class="fas fa-trash-alt"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -41,8 +47,8 @@
           }" [template]="loadingTemplate">
         </ngx-loading>
         <div class="option-container">
-            <div class="create-project" (click)="onClickProjectCreate()">+ Project</div>
-            <div class="entroll-project">+ Entroll</div>
+            <div class="create-project" (click)="onClickProjectCreate()"><i class="fas fa-pencil-alt"></i>+</div>
+            <!-- <div class="entroll-project"><i class="fas fa-user-plus"></i></div> -->
         </div>
         <div class="group-form" [style.display]="showProjectForm ? 'block' : 'none'">
             <form #groupForm="ngForm" (ngSubmit)="onSubmit()">

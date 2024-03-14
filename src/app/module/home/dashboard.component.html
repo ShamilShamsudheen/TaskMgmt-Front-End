@@ -19,25 +19,32 @@
                     <tr *ngFor="let group of GroupData">
                         <td>{{group.groupId}}</td>
                         <td>{{group.groupName}}</td>
-                        <td style="color: blue;font-size: small;">{{group.createdAt}}</td>
-                        <td><button (click)="OnclickView(group.groupId)">View</button></td>
+                        <td style="color: #61affe;font-size: small;">{{group.createdAt}}</td>
+                        <td><button style="color: #61affe;" (click)="OnclickView(group.groupId)"><i
+                                    class="fas fa-eye"></i></button>
+                            <button style="color: #50e3c2;" (click)="OnclickEdit(group.groupId)"><i
+                                    class="fas fa-edit"></i></button>
+                            <button style="color: #f93e3e;" (click)="OnclickDelete(group.groupId)"><i
+                                    class="fas fa-trash-alt"></i></button>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>
             <ngx-loading [show]="loading" [config]="{
                     primaryColour: primaryColour,
                     secondaryColour: secondaryColour,
-                    tertiaryColour: primaryColour,
+                    tertiaryColour: tertiaryColor,
                     backdropBorderRadius: '3px'
                 }" [template]="loadingTemplate">
             </ngx-loading>
         </div>
         <div class="option-container">
-            <div class="create-group" (click)="onClickGroupCreate()">+ Group</div>
-            <div class="entroll-group">+ Entroll</div>
+            <div class="create-group" (click)="onClickGroupCreate()"><i class="fas fa-file"></i>+</div>
+            <div class="entroll-group"><i class="fas fa-user-plus"></i></div>
         </div>
         <div class="group-form" [style.display]="showGroupForm ? 'block' : 'none'">
-            <form #groupForm="ngForm" (ngSubmit)="onSubmit()">
+            <form #groupFormCreate="ngForm" (ngSubmit)="onSubmit('create', groupFormCreate.value.groupName)">
                 <label for="groupName">Group Name:</label>
                 <input type="text" id="groupName" name="groupName" required [(ngModel)]="groupName">
                 <div class="btnDiv">
@@ -46,7 +53,24 @@
                 </div>
             </form>
         </div>
+        <div class="group-form" [style.display]="showGroupEditForm ? 'block' : 'none'">
+            <form #groupFormUpdate="ngForm" (ngSubmit)="onSubmit('update', groupFormUpdate.value.groupName)">
+                <label for="groupName">Group Name:</label>
+                <input type="text" id="groupName" name="groupName" required [value]="groupName" [(ngModel)] = "GroupDto.GroupName">
+                <div class="btnDiv">
+                    <button type="submit">Submit</button>
+                    <button type="button" (click)="onCancel()">Close</button>
+                </div>
+            </form>
+        </div>
+        <div class="group-form" [style.display]="showGroupDeleteConformation ? 'block' : 'none'">
+            
+            <div class="btnDiv">
+                <button type="submit" (click)="onConformation()">Ok</button>
+                <button type="button" (click)="onCancel()">Cancel</button>
+            </div>
 
+        </div>
     </div>
 
 
