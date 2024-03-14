@@ -4,60 +4,63 @@ import { Observable } from 'rxjs';
 import { projectDto } from '../../app/module/projects/projects.component';
 import { groupDto } from '../../app/module/home/dashboard.component';
 export interface signUpData {
-  name:string,
-  email:string,
-  password:string,
-  groupName:string,
-  refferalcode?:string
+  name: string,
+  email: string,
+  password: string,
+  groupName: string,
+  refferalcode?: string
 }
 
 export interface createGroup {
-  groupName:string
+  groupName: string
 }
 export interface loginData {
-  email:string,
-  password:string
+  email: string,
+  password: string
 }
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  newGroup!:createGroup
+  newGroup!: createGroup
 
-  private baseUrl:string = 'https://localhost:7197/api/';
+  private baseUrl: string = 'https://localhost:7197/api/';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
   // Authentication
-  signUp(reqdata:signUpData):Observable<any>{
+  signUp(reqdata: signUpData): Observable<any> {
     return this.http.post(`${this.baseUrl}signup`, reqdata, { responseType: 'text' });
   }
-  login(reqdata:loginData):Observable<any>{
-    return this.http.post(`${this.baseUrl}login` , reqdata , {responseType: 'text'})
+  login(reqdata: loginData): Observable<any> {
+    return this.http.post(`${this.baseUrl}login`, reqdata, { responseType: 'text' })
   }
   // Groups
-  groups():Observable<any>{
+  groups(): Observable<any> {
     return this.http.get(`${this.baseUrl}groups`);
   }
-  createGroup(body:groupDto):Observable<any>{
+  createGroup(body: groupDto): Observable<any> {
 
-    return this.http.post(`${this.baseUrl}groups`,body,{responseType:'text'});
+    return this.http.post(`${this.baseUrl}groups`, body, { responseType: 'text' });
   }
-  group(groupId:number):Observable<any>{
-    return  this.http.get(`${this.baseUrl}groups/${groupId}`)
+  group(groupId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}groups/${groupId}`)
   }
-  updateGroup(groupId:number ,body:groupDto):Observable<any>{
-    
-    return this.http.patch(`${this.baseUrl}groups/${groupId}`,body,{responseType:'text'})
+  updateGroup(groupId: number, body: groupDto): Observable<any> {
+
+    return this.http.patch(`${this.baseUrl}groups/${groupId}`, body, { responseType: 'text' })
+  }
+  deleteGroup(groupId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}groups/${groupId}`)
   }
   // Projects
-  projects(groupId:number):Observable<any>{
+  projects(groupId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}groups/${groupId}/projects`);
   }
-  createProject(reqdata:projectDto,groupId:number):Observable<any> {
-    return this.http.post(`${this.baseUrl}groups/${groupId}/projects`,reqdata,{responseType:'text'});
+  createProject(reqdata: projectDto, groupId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}groups/${groupId}/projects`, reqdata, { responseType: 'text' });
   }
   // Tasks
-  tasks(groupId:number,projectId:number):Observable<any>{
+  tasks(groupId: number, projectId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}/tasks`)
   }
 }

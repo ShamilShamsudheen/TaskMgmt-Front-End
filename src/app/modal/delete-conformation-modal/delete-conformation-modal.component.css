@@ -1,0 +1,8 @@
+button {
+    border: none;
+    color: whitesmoke;
+    border-radius: 1vh;
+    width: 8vw;
+    height: 4vh;
+    cursor: pointer;
+}

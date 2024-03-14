@@ -15,6 +15,9 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TasksComponent } from './module/tasks/tasks.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { DeleteConfirmationModalComponent } from './modal/delete-conformation-modal/delete-conformation-modal.component';
 
 
 
@@ -26,7 +29,8 @@ import { TasksComponent } from './module/tasks/tasks.component';
     SignInComponent,
     DashboardComponent,
     ProjectsComponent,
-    TasksComponent
+    TasksComponent,
+    DeleteConfirmationModalComponent
   ],
   imports: [
     CommonModule,
@@ -48,12 +52,15 @@ import { TasksComponent } from './module/tasks/tasks.component';
       timeOut: 30000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
+      
       iconClasses: {
         error: 'toast-error', 
         success: 'toast-success', 
       },
     }),
     BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   providers:[{provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}],
   bootstrap:[AppComponent]
