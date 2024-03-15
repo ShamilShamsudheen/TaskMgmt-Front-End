@@ -17,13 +17,7 @@ loadingTemplate!: TemplateRef<Element>;
 onClickView(arg0: any) {
 throw new Error('Method not implemented.');
 }
-logout() {
-  this.loading = true;
-  localStorage.removeItem('userToken');
-  this.toastr.success('Logout Successfully!', 'Success', { timeOut: 3000 })
-  this.router.navigate(['/login'])
-  this.loading = false;
-}
+
 OnClickHome() {
   this.router.navigate(['/groups'])
 }

@@ -18,6 +18,7 @@ import { TasksComponent } from './module/tasks/tasks.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DeleteConfirmationModalComponent } from './modal/delete-conformation-modal/delete-conformation-modal.component';
+import { HeaderComponent } from './module/header/header.component';
 
 
 
@@ -30,7 +31,8 @@ import { DeleteConfirmationModalComponent } from './modal/delete-conformation-mo
     DashboardComponent,
     ProjectsComponent,
     TasksComponent,
-    DeleteConfirmationModalComponent
+    DeleteConfirmationModalComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

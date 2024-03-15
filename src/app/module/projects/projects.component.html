@@ -1,10 +1,6 @@
+<app-header></app-header>
 <div class="container">
     <div class="container-body">
-        <div class="heading-container">
-            <h1>Projects</h1>
-            <h1 class="home" (click)="OnClickHome()">Home</h1>
-            <button (click)="logout()">Logout</button>
-        </div>
         <ng-template #noProductData>
             <div class="empty-container">
                 <div class="emptyImg">
@@ -39,6 +35,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="option-container">
+            <div class="create-project" (click)="onClickProjectCreate()"><i class="fas fa-pencil-alt"></i>+</div>
+            <!-- <div class="entroll-project"><i class="fas fa-user-plus"></i></div> -->
+        </div>
         <ngx-loading [show]="loading" [config]="{
             primaryColour: primaryColour,
             secondaryColour: secondaryColour,
@@ -46,16 +46,24 @@
             backdropBorderRadius: '3px'
           }" [template]="loadingTemplate">
         </ngx-loading>
-        <div class="option-container">
-            <div class="create-project" (click)="onClickProjectCreate()"><i class="fas fa-pencil-alt"></i>+</div>
-            <!-- <div class="entroll-project"><i class="fas fa-user-plus"></i></div> -->
-        </div>
         <div class="group-form" [style.display]="showProjectForm ? 'block' : 'none'">
-            <form #groupForm="ngForm" (ngSubmit)="onSubmit()">
+            <form #projectFormCreate="ngForm" (ngSubmit)="onSubmit('create',projectFormCreate.value)">
                 <label for="projectName">Project Name:</label>
                 <input type="text" id="projectName" name="projectName" required [(ngModel)]="newProject.projectName">
                 <label for="groupName">Project Description:</label>
-                <input type="text" id="groupName" name="groupName" required [(ngModel)]="newProject.projectDescription">
+                <input type="text" id="projectDescription" name="projectDescription" required [(ngModel)]="newProject.projectDescription">
+                <div class="btnDiv">
+                    <button type="submit">Submit</button>
+                    <button type="button" (click)="onCancel()">Close</button>
+                </div>
+            </form>
+        </div>
+        <div class="group-form" [style.display]="showProjectEditForm ? 'block' : 'none'">
+            <form #projectFormUpdate="ngForm" (ngSubmit)="onSubmit('update',projectFormCreate.value)">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName" name="projectName" [(ngModel)]="newProject.projectName">
+                <label for="groupName">Project Description:</label>
+                <input type="text" id="projectDescription" name="projectDescription" [(ngModel)]="newProject.projectDescription">
                 <div class="btnDiv">
                     <button type="submit">Submit</button>
                     <button type="button" (click)="onCancel()">Close</button>

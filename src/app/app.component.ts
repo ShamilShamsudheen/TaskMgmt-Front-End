@@ -21,11 +21,7 @@ export class AppComponent implements OnInit{
       this.IsLogged = true;
     }
   }
-  // logout(): void {
-  //   localStorage.removeItem('userToken');
-  //   this.toastr.success('Logout Successfully!', 'Success', { timeOut: 3000 })
-  //   this.router.navigate(['/login'])
-  // }
+  
   title = 'Taskmgmt-FrontEnd';
 
 }

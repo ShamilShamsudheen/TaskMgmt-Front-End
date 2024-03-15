@@ -59,6 +59,17 @@ export class ApiService {
   createProject(reqdata: projectDto, groupId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}groups/${groupId}/projects`, reqdata, { responseType: 'text' });
   }
+  project(groupId: number, projectId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}`)
+  }
+  updateProject(groupId: number, projectId: number, body: projectDto): Observable<any> {
+    console.log(body,'body');
+    
+    return this.http.put(`${this.baseUrl}groups/${groupId}/projects/${projectId}`, body, { responseType: 'text' })
+  }
+  deleteProject(groupId: number, projectId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}groups/${groupId}/projects/${projectId}`)
+  }
   // Tasks
   tasks(groupId: number, projectId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}/tasks`)

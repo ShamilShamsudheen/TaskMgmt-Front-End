@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   groupIdToEdit!: number;
   groupNameToEdit: string = '';
   GroupDto: groupDto = { GroupName: '' };
-  public loading: boolean = false;
+  loading: boolean = false;
   showGroupForm: boolean = false;
   showGroupEditForm: boolean = false;
   groupName: string = '';
@@ -60,28 +60,22 @@ export class DashboardComponent implements OnInit {
   OnClickHome(): void {
     this.router.navigate(['/groups'])
   }
-  logout(): void {
-    localStorage.removeItem('userToken');
-    this.toastr.success('Logout Successfully!', 'Success', { timeOut: 3000 })
-    this.router.navigate(['/login'])
-  }
   onClickGroupCreate(): void {
     this.showGroupForm = !this.showGroupForm;
   }
   onSubmit(mode: string, groupName: string): void {
-    console.log(groupName, 'input');
     this.GroupDto.GroupName = groupName;
-    console.log(this.GroupDto, 'groupDto');
     switch (mode) {
       case 'create':
         this.apiService.createGroup(this.GroupDto)
           .subscribe(
             (res) => {
               this.loading = true;
+              this.toastr.success('Create Group Successfully!', 'Success', { timeOut: 3000 })
               this.router.navigate(['/groups']);
             },
             (err) => {
-              console.log(err, "failed creation");
+              this.toastr.error('failed create group', 'Error', { timeOut: 3000 })
             }
           );
         this.showGroupForm = false;
@@ -140,8 +134,5 @@ export class DashboardComponent implements OnInit {
           this.loading = false;
         }
       )
-  }
-  onConformation() {
-
   }
 }
