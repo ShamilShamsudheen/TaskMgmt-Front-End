@@ -108,14 +108,13 @@ export class ProjectsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.loading = true;
-        this.toastr.success('Delete Project!.', 'success', { timeOut: 3000 });
-        this.apiService.deleteProject(this.groupId,projectId)
+        this.apiService.deleteProject(this.groupId, projectId)
         .subscribe(
-          (res)=>{
-            console.log(res);
+          (res) => {
+            this.toastr.success('Delete Project!.', 'success', { timeOut: 3000 });
             this.loading = false;
-          }
-        )
+            }
+          )
       }
     })
   }
