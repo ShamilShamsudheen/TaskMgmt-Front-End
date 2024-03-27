@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
     <div class="container-body">
-        <ng-template #notaskData>
+        <ng-template #noTaskData>
             <div class="empty-container">
                 <div class="emptyImg">
                     <img src="data:image/png;base64,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"
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </ng-template>
-        <div class="table-container" *ngIf="taskData ; else notaskData">
+        <div class="table-container" *ngIf="taskData && taskData.length ; else noTaskData">
             <table>
                 <thead>
                     <tr>
@@ -19,6 +19,7 @@
                         <th>Due Date</th>
                         <th>Assignee</th>
                         <th>Status</th>
+                        <th>Comment</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +29,10 @@
                         <td>{{task.createdBy}}</td>
                         <td>{{task.dueDate}}</td>
                         <td>{{task.assignee}}</td>
-                        <td>{{task.currentStatus}}</td>
+                        <td [style.color]="getStatusColor(task.currentStatus)">{{ task.currentStatus }}</td>
+
+                        <td><button style="color: #61affe;" (click)="OnclickView(task.taskId)"><i
+                            class="fas fa-eye"></i>view</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -47,29 +51,29 @@
             <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
                 <label for="description">Description:</label>
                 <input type="text" id="description" name="description" formControlName="description" required>
-              
+
                 <label for="dueDate">Due Date:</label>
                 <input type="date" id="dueDate" name="dueDate" formControlName="dueDate" required>
-              
+
                 <label for="assignee">Assignee Mail:</label>
                 <input type="email" id="assignee" name="assignee" formControlName="assigneeMail" required>
-              
+
                 <!-- <label for="createdBy">Created By:</label>
                 <input type="text" id="createdBy" name="createdBy" formControlName="createdBy" required> -->
-              
+
                 <label for="currentStatus">Current Status:</label>
                 <select id="currentStatus" name="currentStatus" formControlName="currentStatus" required>
-                  <option value="Not Started" >NOT-STARTED</option>
-                  <option value="In Progress" >IN-PROGRESS</option>
-                  <option value="Completed" >COMPLETED</option>
+                    <option value="Not Started">NOT-STARTED</option>
+                    <option value="In Progress">IN-PROGRESS</option>
+                    <option value="Completed">COMPLETED</option>
                 </select>
-              
+
                 <div class="btnDiv">
-                  <button type="submit">Submit</button>
-                  <button type="button" (click)="onCancel()">Close</button>
+                    <button type="submit">Submit</button>
+                    <button type="button" (click)="onCancel()">Close</button>
                 </div>
-              </form>
-              
+            </form>
+
         </div>
     </div>
 </div>

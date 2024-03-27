@@ -57,10 +57,10 @@ th {
 
     button {
         border: none;
-        background-color: #007bff;
+        /* background-color: #007bff; */
         color: #fff;
-        width: 8vw;
-        height: 4vh;
+        width: fit-content;
+        height: fit-content;
         border-radius: 1vh;
         cursor: pointer;
     }
@@ -170,7 +170,7 @@ img{
 }
 
 .group-form button[type="submit"] {
-    background-color: #28a745;
+    background-color: #49cc90;
 }
 
 .group-form button[type="submit"]:hover,

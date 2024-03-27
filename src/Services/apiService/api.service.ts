@@ -10,7 +10,9 @@ export interface signUpData {
   groupName: string,
   refferalcode?: string
 }
-
+export interface newComment {
+  command: string
+}
 export interface createGroup {
   groupName: string
 }
@@ -63,8 +65,8 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}`)
   }
   updateProject(groupId: number, projectId: number, body: projectDto): Observable<any> {
-    console.log(body,'body');
-    
+    console.log(body, 'body');
+
     return this.http.put(`${this.baseUrl}groups/${groupId}/projects/${projectId}`, body, { responseType: 'text' })
   }
   deleteProject(groupId: number, projectId: number): Observable<any> {
@@ -73,5 +75,16 @@ export class ApiService {
   // Tasks
   tasks(groupId: number, projectId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}/tasks`)
+  }
+  task(groupId: number, projectId: number, taskId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}/tasks/${taskId}`)
+  }
+  // Task Comments
+  taskComments(groupId: number, projectId: number, taskId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}groups/${groupId}/projects/${projectId}/tasks/${taskId}/comments`)
+  }
+  addComment(groupId: number, projectId: number, taskId: number ,body:newComment): Observable<any> {
+
+    return this.http.post(`${this.baseUrl}groups/${groupId}/projects/${projectId}/tasks/${taskId}/comments`, body, { responseType: 'text' })
   }
 }

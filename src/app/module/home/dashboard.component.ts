@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
       this.apiService.groups()
         .subscribe(
           (res) => {
-            console.log("Success", res);
+            // console.log("Success", res);
             this.GroupData = res;
             this.loading = false;
           }

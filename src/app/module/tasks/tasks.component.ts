@@ -12,26 +12,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent implements OnInit {
-  taskForm!:FormGroup;
+
+
+  taskForm!: FormGroup;
   showTaskForm: boolean = false;
-  onCancel() {
-    this.showTaskForm = false;
-  }
-  onSubmit() {
-    this.taskForm.valid ? console.log(this.taskForm.value):console.log("not valid");
-    ;
-    
-  }
   primaryColour: string | undefined = '#1976d2';
   secondaryColour: string | undefined;
   loadingTemplate!: TemplateRef<Element>;
-  onClickTaskCreate() {
-    this.showTaskForm = true;
-  }
   public loading: boolean = false;
-  taskData: any;
+  taskData!: any;
   private groupId!: number;
   private projectId!: number;
+
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
@@ -40,12 +32,25 @@ export class TasksComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.taskForm = this.fb.group({
-      description:['',Validators.required],
-      dueDate:['',Validators.required],
-      assigneeMail:['',Validators.required],
+      description: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      assigneeMail: ['', Validators.required],
       // createdBy:['',Validators.required],
-      currentStatus:['',Validators.required],
+      currentStatus: ['', Validators.required],
     })
+  }
+
+  onClickTaskCreate() {
+    this.showTaskForm = true;
+  }
+  onCancel() {
+    this.showTaskForm = false;
+  }
+  onSubmit() {
+    this.taskForm.valid ? console.log(this.taskForm.value) : console.log("not valid");
+  }
+  OnclickView(taskId: number) {
+    this.router.navigate([`groups/${this.groupId}/projects/${this.projectId}/tasks/${taskId}/comments`])
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -57,11 +62,22 @@ export class TasksComponent implements OnInit {
     this.apiService.tasks(this.groupId, this.projectId)
       .subscribe(
         (res) => {
-
           this.taskData = res;
           this.loading = false;
         }
       )
+  }
+  getStatusColor(status: string) {
+    switch (status) {
+      case 'not started':
+        return 'orange';
+      case 'in progress':
+        return 'yellow';
+      case 'completed':
+        return 'green';
+      default:
+        return 'gray';
+    }
   }
 
 }

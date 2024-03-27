@@ -7,6 +7,7 @@ import { AuthGuard } from './Gards/authGard/auth.guard';
 import { LoginGuard } from './Gards/loginGard/login.guard';
 import { DashboardComponent } from './module/home/dashboard.component';
 import { TasksComponent } from './module/tasks/tasks.component';
+import { TaskCommandComponent } from './module/task-command/task-command.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'groups/:groupId/projects/:projectId/tasks',
     component: TasksComponent,
+    canActivate: [AuthGuard]
+  },{
+    path: 'groups/:groupId/projects/:projectId/tasks/:taskId/comments',
+    component: TaskCommandComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/login' },

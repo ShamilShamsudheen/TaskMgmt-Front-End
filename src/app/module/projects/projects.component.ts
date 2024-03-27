@@ -41,13 +41,12 @@ export class ProjectsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.groupId = parseInt(params['groupId']);
     });
-
     if (this.groupId) {
       this.apiService.projects(this.groupId)
         .subscribe(
           (res) => {
             this.ProjectData = res;
-            console.log("success", res);
+            // console.log("success", res);
             this.loading = false;
           }
         )

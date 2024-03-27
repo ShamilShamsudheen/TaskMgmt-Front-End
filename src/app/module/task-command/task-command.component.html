@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container">
+    <div class="container-inner"  *ngIf="taskData" >
+        <div class="task-container">
+            <div class="task-container-left">
+                <h2>{{taskData.currentStatus}}</h2>
+                <div class="statusColorBox" [style.background-color]="getStatusColor(taskData.currentStatus)"></div>
+            </div>
+            
+            <div class="task-container-right">
+                <h1>Id :{{taskData.taskId}}</h1>
+                <p style="font-size: x-small;">Description : <span style="font-size: small;font-weight: bold;">{{taskData.description}}</span></p>
+                <p style="font-size: x-small;">Created By : <span style="font-size: small;font-weight: bold;">{{taskData.createdBy}}</span></p>
+                <p style="font-size: x-small;">Assigned To : <span style="font-size: small;font-weight: bold;">{{taskData.assignee}}</span></p>
+                <p style="font-size: x-small;">Due Date : <span style="font-size: small;font-weight: bold;">{{taskData.dueDate}}</span></p>
+                <div class="comment-btn-container">
+                    <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm.value.comment)">
+                        <input type="text" name="comment" id="comment" placeholder="enter comment..." ngModel required>
+                        <button type="submit"><i class="fas fa-comment" style></i>add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="task-comment-container">
+            Comment.....
+            <div *ngFor="let comment of comments" class="comment">
+                <p>{{ comment.commandMessage }}</p>
+                <p class="timestamp">{{ comment.timeStamp | date: 'medium' }}</p>
+            </div>
+        </div>
+    </div>
+    <ngx-loading [show]="loading" [config]="{
+        primaryColour: primaryColour,
+        secondaryColour: secondaryColour,
+        tertiaryColour: primaryColour,
+        backdropBorderRadius: '3px'
+      }" [template]="loadingTemplate">
+    </ngx-loading>
+</div>

@@ -19,7 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DeleteConfirmationModalComponent } from './modal/delete-conformation-modal/delete-conformation-modal.component';
 import { HeaderComponent } from './module/header/header.component';
-
+import { TaskCommandComponent } from './module/task-command/task-command.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -32,7 +33,8 @@ import { HeaderComponent } from './module/header/header.component';
     ProjectsComponent,
     TasksComponent,
     DeleteConfirmationModalComponent,
-    HeaderComponent
+    HeaderComponent,
+    TaskCommandComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +64,7 @@ import { HeaderComponent } from './module/header/header.component';
     }),
     BrowserAnimationsModule,
     MatDialogModule,
+    MatButtonModule,
     MatButtonModule,
   ],
   providers:[{provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}],
